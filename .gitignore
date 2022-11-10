@@ -1,0 +1,7 @@
+.git
+frontend/public/fontawesome5pro/*
+frontend/node_modules/
+backend/node_modules/
+backend/uploads/cover_images/*
+backend/uploads/summernote/*
+backend/uploads/profiles/*

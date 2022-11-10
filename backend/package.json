@@ -1,0 +1,29 @@
+{
+  "name": "san-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/octagon-simon/san-blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Simon Ugorji",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.7.1",
+    "multer": "^1.4.5-lts.1",
+    "octavalidate-nodejs": "^1.0.1",
+    "path": "^0.12.7"
+  }
+}
