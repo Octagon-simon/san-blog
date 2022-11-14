@@ -1,27 +1,29 @@
 const Octavalidate = require('octaValidate-nodejs')
 
 //create new instance
-const validate = new Octavalidate('form_register')
+const validate = new Octavalidate('form_new_comment')
 
 const fieldRules = {
-    uname : {
+    username : {
         'R' : "Your username is required",
-        'USERNAME' : "Your username contains invalid characters"
+        'USERNAME' : "Your username is invalid"
     },
-    email : {
-        'R' : "Your email is required",
-        'EMAIL' : "Your email address is invalid"
+    comment : {
+        'R' : "Your comment is required",
+        'TEXT' : "Your comment contains invalid characters"
     },
-    pass : {
-        'R' : "Your password is required",
-        'MINLENGTH' :[8, "Your password must have a minimum of 8 characters"]
+    postId : {
+        'R' : "Post ID is required",
+        'ALPHA_NUMERIC' : "PostID contains invalid characters"
     }
 }
+
 module.exports = (req, res, next) => {
     try{
         if(req.method == "POST"){
+            const fieldVal = validate.validateFields(fieldRules, req.body)
             //validate the form
-            if(!validate.validateFields(fieldRules, req.body)){
+            if(!fieldVal){
                 return res.status(400).json({
                     success : false,
                     message : "Form validation failed",

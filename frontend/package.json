@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bulma-extensions": "^6.2.7",
     "dotenv": "^16.0.3",
     "octavalidate-reactjs": "^1.0.4",
     "prop-types": "^15.8.1",
@@ -19,6 +20,7 @@
     "react-toastify": "^9.1.1"
   },
   "devDependencies": {
+    "@creativebulma/bulma-collapsible": "^1.0.4",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "@vitejs/plugin-react": "^2.2.0",

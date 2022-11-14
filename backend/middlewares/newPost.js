@@ -6,11 +6,11 @@ const validate = new Octavalidate('form_new_post')
 const fieldRules = {
     title : {
         'R' : "Post title is required",
-        'TEXT' : "Post title contains invalid characters"
+        'ALPHA_SPACES' : "Post title contains invalid characters"
     },
     subtitle : {
         'R' : "Post subtitle is required",
-        'TEXT' : "Post subtitle contains invalid characters"
+        'ALPHA_SPACES' : "Post subtitle contains invalid characters"
     },
     content : {
         'R' : "Post content is required"

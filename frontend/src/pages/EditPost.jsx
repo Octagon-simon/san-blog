@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export default function EditPost() {
     const navigate = useNavigate()
-    const title = useParams().title
+    const title = useParams().title.replaceAll('-', ' ')
     const [data, setData] = useState()
     const [status, setStatus] = useState("not ready")
     const { token } = useToken()
@@ -86,6 +86,7 @@ export default function EditPost() {
         const formData = new FormData(form)
         //append user token to form data
         formData.append('token', token)
+        formData.append('old_title', title)
         //get button
         const btn = form.querySelector(`button[form=${form.id}]`)
         if (myForm.validate()) {
@@ -105,7 +106,7 @@ export default function EditPost() {
                         //btn.removeAttribute("disabled", "disabled")
                         toast.success(`${data.message}!`);
                         setTimeout(() => {
-                            navigate(`/post/${formData.get('title')}`)
+                            navigate(`/post/${formData.get('title').replaceAll(' ','-')}`)
                         }, 3000)
                     } else {
                         btn.classList.remove('is-loading')
@@ -125,19 +126,21 @@ export default function EditPost() {
             jQuery('#summernote').summernote('code', data.post.content)
         }
     }, [data, state1, state2, status])
+
+    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
     return (
         <>  
             {(status === "not ready") ? 
-                <p id="loader" className="has-text-centered"> <i className="fad fa-spinner-third fa-spin fa-5x has-text-app-primary"></i></p>
+                <p id="loader" className="has-text-centered"> <i className="fas fa-spinner-third fa-spin fa-5x has-text-app-primary"></i></p>
             : (status === "failed") ?
                 <div className="has-text-centered p-4">
-                    <p><i className="fad fa-times-circle fa-5x has-text-danger"></i></p>
+                    <p><i className="fas fa-times-circle fa-5x has-text-app-primary"></i></p>
                     <h4 className="title is-4 mt-4">Couldn't fetch Post content</h4>
                     <button onClick={ () => {window.location.reload()}} className="button is-app-primary is-act">Try again</button>
                 </div>
             :(status === "null") ?
                 <div className="has-text-centered p-4">
-                    <p><i className="fad fa-exclamation-triangle fa-5x has-text-danger"></i></p>
+                    <p><i className="fas fa-exclamation-triangle has-text-app-primary"></i></p>
                     <h4 className="title is-4 mt-4">A post with this title does not exist!</h4>
                     <a href='/new-post' className="button is-app-primary is-act">Create a new post</a>
                 </div>
@@ -147,7 +150,7 @@ export default function EditPost() {
             { (state1 === "ready" && state2 === "ready" && status === "ready" && data) &&
                 <div className="container mt-5 p-4 xbg-color">
                     <h3 className="title is-3 has-text-centered">Edit Post</h3>
-                    <h5 className="subtitle has-text-centered">Put your thoughts into writing...</h5>
+                    <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
                     <section className="" style={{ maxWidth: "700px", margin: 'auto' }}>
                         <ToastContainer
                             position="top-right"
@@ -163,7 +166,7 @@ export default function EditPost() {
                             <div className="field">
                                 <label className="label">Blog Title</label>
                                 <p className="control has-icons-left has-icons-right">
-                                    <input id="inp_title" name="title" className="input" defaultValue={title} type="text" placeholder="Enter Post Title" octavalidate="R,TEXT"  {...{ "ov-required-msg": "Blog title is required" }} />
+                                    <input id="inp_title" name="title" className="input" defaultValue={title} type="text" placeholder="Enter Post Title" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required-msg": "Blog title is required" }} />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
@@ -172,11 +175,31 @@ export default function EditPost() {
                             <div className="field">
                                 <label className="label">Blog Subtitle</label>
                                 <p className="control has-icons-left">
-                                    <input className="input" type="text" defaultValue={data.post.subtitle} placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,TEXT"  {...{ "ov-required-msg": "Blog subtitle is required" }} />
+                                    <input className="input" type="text" defaultValue={data.post.subtitle} placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required-msg": "Blog subtitle is required" }} />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
                                 </p>
+                            </div>
+                            <div className="field">
+                                <label className="label">Blog Category</label>
+                                <div className="control has-icons-left">
+                                <div className="select is-fullwidth">
+                                    <select id="select_blog_category" defaultValue={data.post.category}  octavalidate="R,TEXT" name="category" className="" ov-required-msg="Blog category is required">
+                                        <option value="">Select a Category</option>
+                                        { 
+                                        blogCategories.map( (val, ind) => {
+                                            return(
+                                                <option key={ind}>{val}</option>
+                                            )
+                                        })
+                                        }
+                                    </select>
+                                </div>
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-object-group"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div className='field'>
                                 <label className='label'>Select a Cover Image</label>

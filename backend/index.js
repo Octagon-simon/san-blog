@@ -38,9 +38,16 @@ app.use('/update-post', require('./middlewares/updatePost'), require('./controll
 
 app.use('/posts', require('./controllers/allPosts'))
 
-app.get('/post/:title', require('./middlewares/singlePost'), require('./controllers/singlePost'))
+app.use('/post/:title', require('./middlewares/singlePost'), require('./controllers/singlePost'))
 
-app.get('/post/delete/:title/:token', require('./middlewares/deletePost'), require('./controllers/deletePost'))
+app.use('/post/delete/:title/:token', require('./middlewares/deletePost'), require('./controllers/deletePost'))
+
+//post new comment
+app.use('/new-comment', require('./middlewares/newComment'), require('./controllers/newComment'))
+
+app.use('/delete-comment/:commentId/:postId/:token', require('./controllers/deleteComment'))
+
+app.get('/user/:user', require('./controllers/userMeta'))
 
 app.use((req, res) => {
     res.status(400).json({

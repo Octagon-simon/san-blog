@@ -22,7 +22,7 @@ export function useToken() {
     };
 
     return {
-        token : token || getToken(),
+        token : getToken(),
         setToken: saveToken,
         destroyToken: destroyToken
     }

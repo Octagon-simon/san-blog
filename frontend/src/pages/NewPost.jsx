@@ -18,11 +18,10 @@ export default function NewPost() {
     }, [token])
 
 //all users
-    const state1 = useExternalScript("/summernote/jquery-3.4.1.slim.min.js")
-    const state2 = useExternalScript("/summernote/summernote-lite.min.js")
+    const state = useExternalScript("/summernote/summernote-lite.min.js")
 
     React.useEffect(() => {
-        if (state1 === "ready" && state2 === "ready") {
+        if (state === "ready") {
             jQuery('#summernote').summernote({
                 placeholder: 'Hello stand alone ui',
                 tabsize: 2,
@@ -43,11 +42,11 @@ export default function NewPost() {
                 }
             });
         }
-    }, [state1, state2])
+    }, [state])
 
     const handleSubmit = (e) => {
         e.stopPropagation();
-        //get form
+        //get form #582be8
         const form = e.target
         const myForm = new octaValidate(form.id)
         //prevent reload
@@ -90,13 +89,16 @@ export default function NewPost() {
                 })
         }
     }
+
+    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other', 'Animation'];
+
     return (
         <>
             <link href="/summernote/summernote-lite.min.css" rel="stylesheet" />
-            { (state1 === "ready" && state2 === "ready") &&
+            { (state === "ready") &&
                 <div className="container mt-5 p-4 xbg-color">
                     <h3 className="title is-3 has-text-centered">Submit A New Post</h3>
-                    <h5 className="subtitle has-text-centered">Put your thoughts into writing...</h5>
+                    <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
                     <section className="" style={{ maxWidth: "700px", margin: 'auto' }}>
                         <ToastContainer
                             position="top-right"
@@ -110,22 +112,42 @@ export default function NewPost() {
                         />
                         <form id="form_new_post" method="post" className="" noValidate onSubmit={handleSubmit} encType="multipart/form-data">
                             <div className="field">
-                                <label className="label">Blog Title</label>
+                                <label className="label">Post Title</label>
                                 <p className="control has-icons-left has-icons-right">
-                                    <input id="inp_title" name="title" className="input" type="text" placeholder="Enter Post Title" octavalidate="R,TEXT"  {...{ "ov-required:msg": "Blog title is required" }} />
+                                    <input id="inp_title" name="title" className="input" type="text" placeholder="Enter Post Title" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required:msg": "Post title is required" }} />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
                                 </p>
                             </div>
                             <div className="field">
-                                <label className="label">Blog Subtitle</label>
+                                <label className="label">Post Subtitle</label>
                                 <p className="control has-icons-left">
-                                    <input className="input" type="text" placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,TEXT"  {...{ "ov-required:msg": "Blog subtitle is required" }} />
+                                    <input className="input" type="text" placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required:msg": "Post subtitle is required" }} />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
                                 </p>
+                            </div>
+                            <div className="field">
+                                <label className="label">Post Category</label>
+                                <div className="control has-icons-left">
+                                <div className="select is-fullwidth">
+                                    <select id="select_record_count" octavalidate="R,TEXT" name="category" className="" ov-required-msg="Post category is required">
+                                        <option value="">Select a Category</option>
+                                        { 
+                                        blogCategories.map( (val, ind) => {
+                                            return(
+                                                <option key={ind}>{val}</option>
+                                            )
+                                        })
+                                        }
+                                    </select>
+                                </div>
+                                    <span className="icon is-small is-left">
+                                        <i className="fas fa-object-group"></i>
+                                    </span>
+                                </div>
                             </div>
                             <div className='field'>
                                 <label className='label'>Select a Cover Image</label>
@@ -146,10 +168,10 @@ export default function NewPost() {
                                 </div>
                             </div>
                             <div className="field">
-                                <label className="label">Blog Content</label>
+                                <label className="label">Post Content</label>
                                 <p className="control has-icons-left">
                                     <textarea id="summernote"></textarea>
-                                    <textarea className="d-hidden" name="content" placeholder="Type in your content" id="inp_content" octavalidate="R" {...{ "ov-required:msg": "Blog content is required" }}></textarea>
+                                    <textarea className="d-hidden" name="content" placeholder="Type in your content" id="inp_content" octavalidate="R" {...{ "ov-required:msg": "Post content is required" }}></textarea>
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>

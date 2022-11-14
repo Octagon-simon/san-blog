@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import {octaValidate} from 'octavalidate-reactjs'
+import { octaValidate } from 'octavalidate-reactjs'
 import Home from '../pages/Home'
+import { useNavigate } from 'react-router-dom'
 
 export default function () {
-    const myForm = new octaValidate('form_register')
-
+    const navigate = useNavigate()
     const [data, setData] = useState({
         uname: "",
         pass: "",
@@ -17,50 +17,61 @@ export default function () {
         const name = event.target.name;
         const value = event.target.value;
         setData(values => ({ ...values, [name]: value }))
-        console.log(data)
+        //console.log(data)
     }
     const handleSubmit = function (e) {
+        const myForm = new octaValidate('form_register')
+        //the submit button
+        const btn = e.target.querySelector('button');
         //prevent the page from reloading
         e.preventDefault();
         //validate form
         if (myForm.validate()) {
+            btn.classList.toggle('is-loading')
+            btn.setAttribute("disabled", "disabled")
             //do fetch
             fetch('http://localhost:5000/register', {
                 method: "POST",
                 body: JSON.stringify(data),
                 mode: 'cors',
-                headers : {
-                    'content-type' : 'application/json'
+                headers: {
+                    'content-type': 'application/json'
                 }
             })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.success){
+                    if (data.success) {
                         toast.success(`${data.message}!`);
-                    }else{
+                        setTimeout(() => {
+                            navigate('/login')
+                        }, 2000)
+                    } else {
                         toast.error(`${data.message}!`);
+                        btn.classList.remove('is-loading')
+                        btn.removeAttribute("disabled")
                     }
                 })
                 .catch(err => {
                     console.log(err)
+                    btn.classList.remove('is-loading')
+                    btn.removeAttribute("disabled")
+                    toast.error('Sorry, we can\'t sign you up now');
                 })
         }
-        console.log(data)
-
     }
 
     return (
         <div className="container p-5">
             <ToastContainer
-position="top-right"
-autoClose={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-theme="dark"
-/>
+                position="top-right"
+                autoClose={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                theme="dark"
+            />
             <section className="auth-form-section p-4 radius-20">
                 <h3 className="has-text-centered title is-4">Create an account</h3>
                 <form id="form_register" method="post" className="" noValidate onSubmit={handleSubmit}>
@@ -109,6 +120,5 @@ theme="dark"
                 </form>
             </section>
         </div>
-
     )
 }

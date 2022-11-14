@@ -6,7 +6,7 @@ module.exports = async function database() {
             console.log('Database connected')
         })
         //connect to the database 
-        await mongoose.connect('mongodb://127.0.0.1:27017', {dbName : 'sanBlog'});
+        await mongoose.connect('mongodb+srv://octagon:sabadilla@sanblog-cluster.ovcidem.mongodb.net/test', {dbName : 'sanBlog'});
     } catch (err) {
         console.log(err)
     }

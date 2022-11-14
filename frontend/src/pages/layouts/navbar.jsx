@@ -1,12 +1,14 @@
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, useNavigate, useLocation } from "react-router-dom";
 import { useToken } from '../../useToken'
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Navbar() {
+    const location = useLocation()
     const { token, setToken, destroyToken } = useToken();
     const navigate = useNavigate()
     const [logOut, setLogOut] = useState(false)
+    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
 
     const toggleMobileNav = function (e) {
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
@@ -34,8 +36,12 @@ export default function Navbar() {
     React.useEffect(() => {
         //check if logout button was clicked
         if (logOut) {
-            //go to the home route
-            navigate('/home')
+            if (location.pathname == "/home") {
+                window.location.reload()
+            } else {
+                //go to the home route
+                navigate('/home')
+            }
             //update token state to an empty string
             setToken('')
             //update logout state to false
@@ -62,7 +68,7 @@ export default function Navbar() {
             />
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <a className="navbar-item font-pacifico" href="https://bulma.io">
+                    <a className="navbar-item font-pacifico" href="./">
                         sanBlog
                     </a>
 
@@ -82,25 +88,26 @@ export default function Navbar() {
                             All posts
                         </Link>
                         {(token) &&
-                        <a href="/new-post" className="navbar-item">
-                            New post
-                        </a>
+                            <a href="/new-post" className="navbar-item">
+                                New post
+                            </a>
                         }
                         <div className="navbar-item has-dropdown is-hoverable">
                             <a className="navbar-link">
-                                More
+                                Categories
                             </a>
 
                             <div className="navbar-dropdown">
-                                <a className="navbar-item">
-                                    About
-                                </a>
-                                <a className="navbar-item">
-                                    Jobs
-                                </a>
-                                <a className="navbar-item">
-                                    Contact
-                                </a>
+                                {blogCategories.map((item, ind) => {
+                                    const url = new URL(window.location.origin + '/posts');
+                                    url.searchParams.append('category', item.replaceAll(' ', '-'))
+                                    return (
+                                        <a key={ind} href={url.href} className="navbar-item">
+                                            {item}
+                                        </a>
+                                    )
+                                })
+                                }
                             </div>
                         </div>
                     </div>
@@ -110,11 +117,11 @@ export default function Navbar() {
                             <div className="buttons">
                                 {(!token) ?
                                     <>
-                                        <a className="button is-app-primary" href="/register">
-                                            <strong>Sign up</strong>
-                                        </a>
                                         <a href="/login" className="button is-light">
                                             Log in
+                                        </a>
+                                        <a className="button is-app-primary" href="/register">
+                                            <strong>Sign up</strong>
                                         </a>
                                     </> :
                                     <button className="button is-app-primary" onClick={LogOut}>

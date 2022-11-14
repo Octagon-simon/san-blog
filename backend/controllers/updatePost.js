@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     try {
         //check if data exists
         const post = await Post.findOne({
-            title: req.body.title,
+            title: req.body.old_title.replaceAll('-',' '),
             userId: req.body.token
         })
         //post exists
@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
                 subtitle: req.body?.subtitle || post.subtitle,
                 content: req.body?.content || post.content,
                 cover: coverImage?.name || post.cover,
+                category : req.body?.category || 'Other',
                 lastUpdated: new Date().getTime()
             })
 

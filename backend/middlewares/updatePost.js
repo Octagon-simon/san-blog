@@ -5,10 +5,10 @@ const validate = new Octavalidate('form_new_post')
 
 const fieldRules = {
     title : {
-        'TEXT' : "Post title contains invalid characters"
+        'ALPHA_SPACES' : "Post title contains invalid characters"
     },
     subtitle : {
-        'TEXT' : "Post subtitle contains invalid characters"
+        'ALPHA_SPACES' : "Post subtitle contains invalid characters"
     },
     token : {
         'R' : "User token is required",

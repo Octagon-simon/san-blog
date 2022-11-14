@@ -22,8 +22,6 @@ export default function Login() {
         }
     }, [token])
 
-    const myForm = new octaValidate('form_login')
-
     const [data, setData] = useState({
         pass: "",
         email: ""
@@ -34,13 +32,15 @@ export default function Login() {
         setData(values => ({ ...values, [name]: value }))
     }
     const handleSubmit = function (e) {
+        const myForm = new octaValidate('form_login')
         //the submit button
         const btn = e.target.querySelector('button');
-        btn.classList.toggle('is-loading')
         //prevent the page from reloading
         e.preventDefault();
         //validate form
         if (myForm.validate()) {
+            btn.classList.toggle('is-loading')
+            btn.setAttribute("disabled", "disabled")
             //do fetch
             fetch('http://localhost:5000/login', {
                 method: "POST",
@@ -58,15 +58,17 @@ export default function Login() {
                         toast.success(`${data.message}!`);
                         //set token
                         setToken(data.data);
-console.log(token, 'frm submit')
-                        
                     } else {
                         btn.classList.remove('is-loading')
+                        btn.removeAttribute("disabled")
                         toast.error(`${data.message}!`);
                     }
                 })
                 .catch(err => {
                     console.log(err)
+                    btn.classList.remove('is-loading')
+                    btn.removeAttribute("disabled")
+                    toast.error(`Sorry, we can't login you in now.`);
                 })
         } else {
             btn.classList.remove('is-loading')

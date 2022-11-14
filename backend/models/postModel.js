@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
     content: { type: String, required: true },
+    category : {
+        type : String,
+        default : "Other"
+    },
     datePosted: {
         type: Date,
         default: new Date().getTime()

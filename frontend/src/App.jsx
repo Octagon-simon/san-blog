@@ -11,10 +11,15 @@ import EditPost from './pages/EditPost'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { nanoid } from 'nanoid'
 import SinglePost from './pages/SinglePost'
+import UserMeta from './pages/UserMeta'
 
 function App() {
   const { token } = useToken();
-  console.log(token, "from app")
+
+  React.useEffect( () => {
+    console.log(token, "from app")
+  }, [token])
+
   const handleClick = () => {
     //$(document.body)[0].classList.toggle('dark')
   }
@@ -44,6 +49,7 @@ function App() {
           <Route path="login" element={(token) ? <Navigate replace to="/" /> : <Login />} />
           <Route path="new-post" element={<NewPost />} />
           <Route path="post/:title" element={<SinglePost />} />
+          <Route path="user/:user" element={<UserMeta />} />
           <Route path="edit-post/:title" element={<EditPost />} />
         </Route>
       </Routes>
