@@ -1,4 +1,4 @@
-const Octavalidate = require('octaValidate-nodejs')
+const Octavalidate = require('octavalidate-nodejs')
 
 //create new instance
 const validate = new Octavalidate('form_new_post')

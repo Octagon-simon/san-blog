@@ -24,6 +24,7 @@ function App() {
     //$(document.body)[0].classList.toggle('dark')
   }
   // const [token, setToken] = useState();
+  //\"^[A-Za-z0-9-_./ ]*$\
   // //check if token is empty then render the login component
   // if(!token) {
   //   return <Login setToken={setToken} />
