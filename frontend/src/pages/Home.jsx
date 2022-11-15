@@ -48,8 +48,8 @@ function Home() {
             <section className="hero is-medium">
                 <div className="hero-body">
                     <div className="container has-text-centered" style={{ top: '30%' }}>
-                        <h1 className="title is-1 font-poppins has-text-light">Welcome to sanBlog</h1>
-                        <p className="subtitle has-text-light">The Home of quality content</p>
+                        <h1 className="title is-1 has-text-light">Welcome to sanBlog</h1>
+                        <p className="subtitle has-text-light font-pacifico">The Home of quality content</p>
                         <div id="homeBtn">
                             {(!homeBtn) ?
                                 <a href="/login" className="btn-act button is-app-primary is-medium">Get started</a>
@@ -97,9 +97,9 @@ function Home() {
                 </section>
 
                 : (status === "not ready") ?
-                    <p id="loader" className="has-text-centered mt-5"> <i className="fas fa-spinner fa-spin fa-5x has-text-app-primary"></i></p>
+                    <p id="loader" className="has-text-centered mt-5 should-be-centered"> <i className="fas fa-spinner fa-spin fa-5x has-text-app-primary"></i></p>
                     : (status === "failed") ?
-                        <div className="has-text-centered p-4 mt-5">
+                        <div className="has-text-centered p-4 mt-5 should-be-centered">
                             <p><i className="fas fa-times-circle fa-5x has-text-app-primary"></i></p>
                             <h4 className="title is-4 mt-4">Couldn't fetch Posts</h4>
                             <button onClick={() => { window.location.reload() }} className="button is-app-primary is-act">Try again</button>

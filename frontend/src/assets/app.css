@@ -1,4 +1,4 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montaga&family=Poppins&display=swap');
 
@@ -6,7 +6,16 @@ html,
 body {
     scroll-behavior: smooth;
     /*font-family: 'Poppins', sans-serif;*/
-    font-family: 'Montaga', serif;
+    /*font-family: 'Montaga', serif;*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-montaga{
+    font-family: 'Montaga', serif !important;
+}
+
+.font-poppins{
+    font-family: 'Poppins', sans-serif !important;
 }
 
 body.dark {
@@ -61,6 +70,7 @@ body.light {
 
 .font-pacifico {
     font-family: 'Pacifico', cursive !important;
+    letter-spacing: 1px;
 }
 
 .d-none{
@@ -112,7 +122,7 @@ background: linear-gradient(140deg, rgba(29,17,218,1) 31%, rgba(120,0,184,1) 100
 .auth-form-section {
     max-width: 500px;
     margin: 50px auto;
-    box-shadow: 0px 0px 8px #ddd;
+    box-shadow: 5px 5px 8px #ddd;
     /*display: flex;
     flex-direction: column;
     align-items: center;*/
@@ -234,10 +244,6 @@ background-size: 100% 100%;
 .blog-post:not(:last-child){
     margin-bottom:20px;
 }
-.blog-last article{
-    sbackground-color: #ececec;
-    /*border-radius: 0 0 20px 20px;*/
-}
 .single-post{
     display:flex;
     border-radius: 0;
@@ -349,6 +355,11 @@ cursor:pointer;
 .home-posts-card .footer-section .button-area{
     width:100%;
     text-align: right;
+}
+.should-be-centered{
+    position: relative;
+    transform: translate(-50%, 50%);
+    left: 50%;
 }
 @media screen and (max-width: 600px) {
     .center-on-mobile{

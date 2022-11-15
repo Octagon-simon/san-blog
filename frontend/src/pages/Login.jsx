@@ -13,7 +13,6 @@ export default function Login() {
     const navigate = useNavigate();
     
     React.useEffect( () => {
-        console.log(token, 'frm effect')
         if(token){
             setTimeout(() => {
                 //window.location.href="home"
@@ -73,22 +72,10 @@ export default function Login() {
         } else {
             btn.classList.remove('is-loading')
         }
-        console.log(data)
-
     }
 
     return (
         <div className="container p-5">
-            <ToastContainer
-                position="top-right"
-                autoClose={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                theme="dark"
-            />
             <section className="auth-form-section p-4 radius-20">
                 <h3 className="has-text-centered title is-4"> Login to your account</h3>
                 <form id="form_login" method="post" className="" noValidate onSubmit={handleSubmit}>

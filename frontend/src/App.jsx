@@ -15,14 +15,7 @@ import UserMeta from './pages/UserMeta'
 
 function App() {
   const { token } = useToken();
-
-  React.useEffect( () => {
-    console.log(token, "from app")
-  }, [token])
-
-  const handleClick = () => {
-    //$(document.body)[0].classList.toggle('dark')
-  }
+  
   // const [token, setToken] = useState();
   //\"^[A-Za-z0-9-_./ ]*$\
   // //check if token is empty then render the login component

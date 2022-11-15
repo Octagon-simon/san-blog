@@ -152,16 +152,6 @@ export default function EditPost() {
                     <h3 className="title is-3 has-text-centered">Edit Post</h3>
                     <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
                     <section className="" style={{ maxWidth: "700px", margin: 'auto' }}>
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            theme="dark"
-                        />
                         <form id="form_update_post" method="post" className="" noValidate onSubmit={handleSubmit} encType="multipart/form-data">
                             <div className="field">
                                 <label className="label">Blog Title</label>
