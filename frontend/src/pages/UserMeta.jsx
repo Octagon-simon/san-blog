@@ -41,7 +41,7 @@ export default function SinglePost() {
         <>
             <div className="container blog-container mt-5 p-3">
                 {(status === "not ready") ?
-                    <p id="loader" className="has-text-centered"> <i className="fas fa-spinner-third fa-spin fa-5x has-text-app-primary"></i></p>
+                    <p id="loader" className="has-text-centered"> <i className="fas fa-spinner fa-spin fa-5x has-text-app-primary"></i></p>
                     : (status === "failed") ?
                         <div className="has-text-centered p-4">
                             <p><i className="fas fa-times-circle fa-5x has-text-danger"></i></p>
