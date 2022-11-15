@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import useFetch from '../handleFetch'
 import SinglePost from './SinglePost'
-// import DotEnv from 'dotenv'
-// DotEnv.config()
 import { useNavigate, useSearchParams } from 'react-router-dom'
-// console.log(process.env.REACT_APP_BURL, 'process env')
 function Posts() {
     const [searchParams, ,] = useSearchParams()
     //const { data, FetchGet } = useFetch()
@@ -72,14 +69,14 @@ function Posts() {
 
     const navigate = useNavigate()
     //console.log(data, s)
-    //FetchGet('http://localhost:5000/posts')
+    //FetchGet('import.meta.env.VITE_BACKEND_URL/posts')
     //const [data, setData] = useState()
 
-    //const r = FetchGet('http://localhost:5000/posts')
+    //const r = FetchGet('import.meta.env.VITE_BACKEND_URL/posts')
 
     React.useEffect(() => {
 
-        let url = new URL('http://localhost:5000/posts');
+        let url = new URL(import.meta.env.VITE_BACKEND_URL+'/posts');
         url.searchParams.append('category', filter.category.replaceAll('-',' ') || '')
         url.searchParams.append('search', filter.search || '')
         fetch(url.href, {
@@ -194,10 +191,10 @@ function Posts() {
                 }
                 {(status === "ready" && data) &&
                     data.posts.slice(indexOfFirstRecord, indexOfLastRecord).map((val, ind) => {
-                        const coverImage = `http://localhost:5000/public/cover_images/${val.cover}`;
-                        const style = {
-                            "backgroundImage": `url('http://localhost:5000/public/cover_images/${val.cover}')`
-                        }
+                        const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}`;
+                        // const style = {
+                        //     "backgroundImage": `url('import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}')`
+                        // }
                         return (
                             <section key={ind} className="single-post bg-color">
                                 <div className="single-post-first">

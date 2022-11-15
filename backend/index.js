@@ -1,11 +1,13 @@
 const express = require('express')
 const path = require('path')
-const fileUpload = require('express-fileUpload')
+const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const db = require('./utils/database')
 const app = express()
+//dotenv file
+require('dotenv').config()
+//port
 const PORT = process.env.PORT || 5000
-
 //parse url encoded bodies (as sent by html forms)
 app.use(express.urlencoded({ extended: true }))
 //parse json bodies (as sent by api clients)

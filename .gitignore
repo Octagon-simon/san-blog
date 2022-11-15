@@ -5,3 +5,5 @@ backend/node_modules/
 backend/uploads/cover_images/*
 backend/uploads/summernote/*
 backend/uploads/profiles/*
+frontend/.env
+backend/.env

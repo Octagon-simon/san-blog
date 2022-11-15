@@ -30,7 +30,7 @@ export default function () {
             btn.classList.toggle('is-loading')
             btn.setAttribute("disabled", "disabled")
             //do fetch
-            fetch('http://localhost:5000/register', {
+            fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
                 method: "POST",
                 body: JSON.stringify(data),
                 mode: 'cors',

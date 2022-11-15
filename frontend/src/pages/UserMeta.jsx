@@ -11,7 +11,7 @@ export default function SinglePost() {
 
     React.useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/user/${user}`, {
+            fetch(`import.meta.env.VITE_BACKEND_URL/user/${user}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {

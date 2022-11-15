@@ -14,7 +14,7 @@ export default function SinglePost() {
 
     React.useEffect(() => {
         if (title) {
-            fetch(`http://localhost:5000/post/${title}`, {
+            fetch(`import.meta.env.VITE_BACKEND_URL/post/${title}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -54,7 +54,7 @@ export default function SinglePost() {
         btn.setAttribute("disabled", "disabled")
 
         if (confirm("Are you sure that you want to delete this post?") && token) {
-            fetch(`http://localhost:5000/post/delete/${title}/${token}`, {
+            fetch(`import.meta.env.VITE_BACKEND_URL/post/delete/${title}/${token}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -91,7 +91,7 @@ export default function SinglePost() {
         btn.setAttribute("disabled", "disabled")
 
         if (confirm("Are you sure that you want to delete this comment?") && token && data && commentId) {
-            fetch(`http://localhost:5000/delete-comment/${commentId}/${data.post._id}/${token}`, {
+            fetch(`import.meta.env.VITE_BACKEND_URL/delete-comment/${commentId}/${data.post._id}/${token}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -139,7 +139,7 @@ export default function SinglePost() {
                 btn.classList.toggle('is-loading')
                 btn.setAttribute("disabled", "disabled")
 
-                fetch('http://localhost:5000/new-comment', {
+                fetch(import.meta.env.VITE_BACKEND_URL+'/new-comment', {
                     method: "POST",
                     body: formData,
                     mode: 'cors'
@@ -210,7 +210,7 @@ export default function SinglePost() {
                                 </div>
                                 <div className="blog-second has-text-centered">
                                     <div className="blog-cover">
-                                        <img src={'http://localhost:5000/public/cover_images/' + data.post.cover} className="img" />
+                                        <img src={import.meta.env.VITE_BACKEND_URL+'/public/cover_images/' + data.post.cover} className="img" />
                                     </div>
                                     <div className="blog-third has-text-centered">
                                         <h4 className="title is-6 blog-user">Posted by <a href={'../user/' + data.post.userId._id}>{data.post.userId.uname}</a> on {new Date(data.post.datePosted).toLocaleString()}</h4>
@@ -283,7 +283,7 @@ export default function SinglePost() {
                                     {
                                         (data.similar.length > 0) ?
                                         data.similar.map( (val, ind) => {
-                                            const coverImage = `http://localhost:5000/public/cover_images/${val.cover}`;
+                                            const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}`;
                                             return (
                                                 <section key={ind} className="single-post bg-color">
                                                     <div className="single-post-first">

@@ -62,7 +62,7 @@ export default function NewPost() {
             btn.classList.toggle('is-loading')
             btn.setAttribute("disabled", "disabled")
 
-            fetch('http://localhost:5000/new-post', {
+            fetch(import.meta.env.VITE_BACKEND_URL+'/new-post', {
                 method: "POST",
                 body: formData,
                 mode: 'cors'

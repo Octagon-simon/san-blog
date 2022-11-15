@@ -17,7 +17,7 @@ function Home() {
     }, [token])
 
     React.useEffect( () => {
-        fetch('http://localhost:5000/posts', {
+        fetch(import.meta.env.VITE_BACKEND_URL+'/posts', {
             method: "GET",
             mode: 'cors',
             headers: {
@@ -64,7 +64,7 @@ function Home() {
                         data &&
 
                         data.posts.map((post, ind) => {
-                            const coverImage = `http://localhost:5000/public/cover_images/${post.cover}`;
+                            const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${post.cover}`;
                             return (
                                 <div key={ind} className="column is-4">
                                     <div className="card home-posts-card m-auto">

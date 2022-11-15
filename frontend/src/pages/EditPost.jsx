@@ -22,7 +22,7 @@ export default function EditPost() {
     //fetch post with this title
     React.useEffect ( () => {
         if(title){
-            fetch(`http://localhost:5000/post/${title}`, {
+            fetch(`import.meta.env.VITE_BACKEND_URL/post/${title}`, {
             method: "GET",
             mode: 'cors',
             headers: {
@@ -94,7 +94,7 @@ export default function EditPost() {
             btn.classList.toggle('is-loading')
             btn.setAttribute("disabled", "disabled")
 
-            fetch('http://localhost:5000/update-post', {
+            fetch(import.meta.env.VITE_BACKEND_URL+'/update-post', {
                 method: "POST",
                 body: formData,
                 mode: 'cors'
