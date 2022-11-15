@@ -3,8 +3,12 @@ const Comment = require('../models/commentModel.js')
 
 module.exports = async (req, res) => {
     try {
-        if (req.method == "GET" && req.params?.title) {
-            const post = await Post.findOne({ title: new RegExp(req.params.title.replaceAll('-', ' '), 'i') }).populate('userId')
+        let title = req.params?.title
+        if (req.method == "GET" && title) {
+            if(title.includes('-')){
+                title = req.params.title.replaceAll('-', ' ')
+            }
+            const post = await Post.findOne({ title: new RegExp(title, 'i') }).populate('userId')
             if (post) {
                 const comments = await Comment.find({ postId: post._id });
                 //get all posts with thesame categories
