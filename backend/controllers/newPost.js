@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
             //it is made required by default
             const coverImage = req.files.cover
             coverImage.mv(path.resolve(__dirname, '../uploads/cover_images', coverImage.name), async (err) => {
-                if(err) throw new Error(err)
+                if(err) console.log(err)
                 //add cover parameter to the new Post Object
                 newPost['cover'] = coverImage.name
                 //store to db

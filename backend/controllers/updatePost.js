@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
                 })
                 //save new cover image
                 coverImage.mv(path.resolve(__dirname, '../uploads/cover_images', coverImage.name), async (err) => {
-                    if (err) throw new Error(err)
+                    if (err) console.log(err)
                     console.log("image uploaded")
                 })
             }
