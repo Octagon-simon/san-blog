@@ -14,7 +14,7 @@ export default function SinglePost() {
 
     React.useEffect(() => {
         if (title) {
-            fetch(import.meta.env.VITE_BACKEND_URL+`/post/${title}`, {
+            fetch(import.meta.env.VITE_BACKEND_URL+`/post/${title.replaceAll('-',' ')}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
