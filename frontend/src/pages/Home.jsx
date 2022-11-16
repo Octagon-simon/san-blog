@@ -69,7 +69,7 @@ function Home() {
                             data &&
 
                             data.posts.map((post, ind) => {
-                                const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${post.cover}`;
+                                const coverImage = (post.cover) ? JSON.parse(post.cover)?.secure_url : 'https://res.cloudinary.com/dxsxxso3a/image/upload/v1668527703/cld-sample-3.jpg';
                                 return (
                                     <div key={ind} className="column is-4">
                                         <div className="card home-posts-card m-auto">

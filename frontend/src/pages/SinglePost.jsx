@@ -14,7 +14,7 @@ export default function SinglePost() {
 
     React.useEffect(() => {
         if (title) {
-            fetch(`import.meta.env.VITE_BACKEND_URL/post/${title}`, {
+            fetch(import.meta.env.VITE_BACKEND_URL+`/post/${title}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -37,7 +37,7 @@ export default function SinglePost() {
                     setStatus("failed")
                 })
         }
-    }, [title]);
+    }, []);
     //replace spaces in post titles with dashes
     React.useEffect(() => {
         if ((status === "ready" && data)) {
@@ -48,13 +48,12 @@ export default function SinglePost() {
 
     //handle post deletion
     const handleDelete = (e) => {
-        console.log(e)
         const btn = e.target
         btn.classList.toggle("is-loading")
         btn.setAttribute("disabled", "disabled")
 
         if (confirm("Are you sure that you want to delete this post?") && token) {
-            fetch(`import.meta.env.VITE_BACKEND_URL/post/delete/${title}/${token}`, {
+            fetch(import.meta.env.VITE_BACKEND_URL+`/delete-post/${title.replaceAll('-',' ')}/${token}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -83,7 +82,6 @@ export default function SinglePost() {
     }
     //handle post deletion
     const handleDeleteComment = (e) => {
-        console.log(e)
         const btn = e.target
         const commentId = btn.getAttribute("comment-id");
 
@@ -91,7 +89,7 @@ export default function SinglePost() {
         btn.setAttribute("disabled", "disabled")
 
         if (confirm("Are you sure that you want to delete this comment?") && token && data && commentId) {
-            fetch(`import.meta.env.VITE_BACKEND_URL/delete-comment/${commentId}/${data.post._id}/${token}`, {
+            fetch(import.meta.env.VITE_BACKEND_URL+`/delete-comment/${commentId}/${data.post._id}/${token}`, {
                 method: "GET",
                 mode: 'cors',
                 headers: {
@@ -210,7 +208,7 @@ export default function SinglePost() {
                                 </div>
                                 <div className="blog-second has-text-centered">
                                     <div className="blog-cover">
-                                        <img src={import.meta.env.VITE_BACKEND_URL+'/public/cover_images/' + data.post.cover} className="img" />
+                                        <img src={(data.post.cover) ? JSON.parse(data.post.cover)?.secure_url : 'https://res.cloudinary.com/dxsxxso3a/image/upload/v1668527703/cld-sample-3.jpg'} className="img" />
                                     </div>
                                     <div className="blog-third has-text-centered">
                                         <h4 className="title is-6 blog-user">Posted by <a href={'../user/' + data.post.userId._id}>{data.post.userId.uname}</a> on {new Date(data.post.datePosted).toLocaleString()}</h4>
@@ -218,8 +216,8 @@ export default function SinglePost() {
                                             (token && (data.post.userId._id === token)) &&
                                             <div className="button-section">
                                                 <>
-                                                    <a href={'../edit-post/' + data.post.title.replaceAll(' ','-')} className="has-fa-icon button is-app-primary mr-2">Edit post <i className="fas fa-pencil"></i></a>
-                                                    <button onClick={(e) => handleDelete(e)} className="button has-fa-icon is-danger">Delete post <i className="fas fa-trash"></i></button>
+                                                    <a href={'../edit-post/' + data.post.title.replaceAll(' ','-')} className="has-fa-icon button is-app-primary mr-2">Edit post</a>
+                                                    <button onClick={(e) => handleDelete(e)} className="button has-fa-icon is-danger">Delete post</button>
                                                 </>
                                             </div>
                                         }
@@ -283,7 +281,7 @@ export default function SinglePost() {
                                     {
                                         (data.similar.length > 0) ?
                                         data.similar.map( (val, ind) => {
-                                            const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}`;
+                                            const coverImage = (val.cover) ? JSON.parse(val.cover)?.secure_url : 'https://res.cloudinary.com/dxsxxso3a/image/upload/v1668527703/cld-sample-3.jpg';
                                             return (
                                                 <section key={ind} className="single-post bg-color">
                                                     <div className="single-post-first">

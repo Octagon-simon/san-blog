@@ -58,13 +58,14 @@ export default function Navbar() {
         <>
             <ToastContainer
                 position="top-right"
-                autoClose={false}
-                newestOnTop={false}
+                hideProgressBar={false}
+                autoClose={true}
+                newestOnTop={true}
                 closeOnClick
                 rtl={false}
                 pauseOnFocusLoss
                 draggable
-                theme="dark"
+                theme="colored"
             />
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">

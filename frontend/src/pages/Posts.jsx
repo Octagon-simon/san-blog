@@ -75,7 +75,6 @@ function Posts() {
     //const r = FetchGet('import.meta.env.VITE_BACKEND_URL/posts')
 
     React.useEffect(() => {
-
         let url = new URL(import.meta.env.VITE_BACKEND_URL+'/posts');
         url.searchParams.append('category', filter.category.replaceAll('-',' ') || '')
         url.searchParams.append('search', filter.search || '')
@@ -105,8 +104,6 @@ function Posts() {
                 setData(null)
                 setStatus("failed")
             })
-
-
     }, [filter]);
 
     const handleReadPost = (title) => {
@@ -191,10 +188,7 @@ function Posts() {
                 }
                 {(status === "ready" && data) &&
                     data.posts.slice(indexOfFirstRecord, indexOfLastRecord).map((val, ind) => {
-                        const coverImage = `import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}`;
-                        // const style = {
-                        //     "backgroundImage": `url('import.meta.env.VITE_BACKEND_URL/public/cover_images/${val.cover}')`
-                        // }
+                        const coverImage = (val.cover) ? JSON.parse(val.cover)?.secure_url : 'https://res.cloudinary.com/dxsxxso3a/image/upload/v1668527703/cld-sample-3.jpg';
                         return (
                             <section key={ind} className="single-post bg-color">
                                 <div className="single-post-first">

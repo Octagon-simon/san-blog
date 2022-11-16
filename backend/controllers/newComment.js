@@ -4,9 +4,9 @@ const Comment =require('../models/commentModel')
 module.exports = async (req, res) => {
     try {
         //check if post exists
-        const post = await Post.findById(req.body.postId)
+        const post = await Post.findById(req.fields.postId)
         if (post) {
-            const newComment = new Comment(req.body)
+            const newComment = new Comment(req.fields)
             newComment.save().then(savedDoc => {
                 if (savedDoc) {
                     return res.status(200).json({

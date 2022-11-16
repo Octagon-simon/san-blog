@@ -23,7 +23,7 @@ const postSchema = new mongoose.Schema({
     lastUpdated : {
         type: String
     },
-    cover: { required: true, type: String }
+    cover: { type: String }
 })
 //handle summernote file upload
 module.exports = mongoose.model('Post', postSchema, 'posts')

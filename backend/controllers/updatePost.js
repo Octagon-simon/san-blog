@@ -1,36 +1,62 @@
 const Post = require('../models/postModel')
 const path = require('path')
-const fs = require('fs')
+// Require the cloudinary library
+const cloudinary = require('cloudinary').v2;
+// Return "https" URLs by setting secure: true
+cloudinary.config({
+    secure: true
+});
+/////////////////////////
+// Uploads an image file
+/////////////////////////
+const uploadImage = async (imagePath) => {
+    // Use the uploaded file's name as the asset's public ID and 
+    // allow overwriting the asset with new versions
+    const options = {
+        use_filename: true,
+        unique_filename: false,
+        overwrite: true,
+    };
+
+    try {
+        // Upload the image
+        const result = await cloudinary.uploader.upload(imagePath, options);
+        //console.log(result);
+        return result
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 module.exports = async (req, res) => {
     try {
         //check if data exists
         const post = await Post.findOne({
-            title: req.body.old_title.replaceAll('-',' '),
-            userId: req.body.token
+            title: req.fields.old_title.replaceAll('-',' '),
+            userId: req.fields.token
         })
         //post exists
         if (post) {
             const coverImage = req.files?.cover
-            if (coverImage) {
-                //delete previous cover image
-                fs.unlink(path.resolve(__dirname, '../uploads/cover_images', post.cover), () => {
-                    console.log("image deleted")
-                })
-                //save new cover image
-                coverImage.mv(path.resolve(__dirname, '../uploads/cover_images', coverImage.name), async (err) => {
-                    if (err) console.log(err)
-                    console.log("image uploaded")
-                })
+            let imgData = '';
+            if (coverImage){
+                //upload to cloudinary
+                imgData = await uploadImage(req.files?.cover.path);
+                
+                //delete cover image
+                if(post.cover)
+                    await cloudinary.uploader.destroy(JSON.parse(post.cover).public_id, {
+                        invalidate : true
+                    })
             }
 
             //update the document
             const updatedDoc = await Post.findByIdAndUpdate(post._id, {
-                title: req.body?.title || post.title,
-                subtitle: req.body?.subtitle || post.subtitle,
-                content: req.body?.content || post.content,
-                cover: coverImage?.name || post.cover,
-                category : req.body?.category || 'Other',
+                title: req.fields?.title || post.title,
+                subtitle: req.fields?.subtitle || post.subtitle,
+                content: req.fields?.content || post.content,
+                cover: (imgData) ? JSON.stringify({secure_url : imgData.secure_url, public_id : imgData.public_id}) : post.cover,
+                category : req.fields?.category || 'Other',
                 lastUpdated: new Date().getTime()
             })
 

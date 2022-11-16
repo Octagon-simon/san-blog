@@ -89,7 +89,9 @@ export default function NewPost() {
                 })
         }
     }
-
+    const setFileName = (e) => {
+        document.querySelector('.file-name').innerText = e.target.files[0].name
+    }
     const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other', 'Animation'];
 
     return (
@@ -100,16 +102,6 @@ export default function NewPost() {
                     <h3 className="title is-3 has-text-centered">Submit A New Post</h3>
                     <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
                     <section className="" style={{ maxWidth: "700px", margin: 'auto' }}>
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            theme="dark"
-                        />
                         <form id="form_new_post" method="post" className="" noValidate onSubmit={handleSubmit} encType="multipart/form-data">
                             <div className="field">
                                 <label className="label">Post Title</label>
@@ -153,7 +145,7 @@ export default function NewPost() {
                                 <label className='label'>Select a Cover Image</label>
                                 <div className="file has-name">
                                     <label className="file-label">
-                                        <input id="inp_cover" className="file-input" type="file" name="cover" octavalidate="R" accept-mime="image/*" {...{ "ov-required:msg": "Cover image is required" }} />
+                                        <input onChange={setFileName} id="inp_cover" className="file-input" type="file" name="cover" octavalidate="R" accept-mime="image/*" {...{ "ov-required:msg": "Cover image is required" }} />
                                         <span className="file-cta">
                                             <span className="file-icon">
                                                 <i className="fas fa-upload"></i>

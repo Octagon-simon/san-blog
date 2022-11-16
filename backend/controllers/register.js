@@ -4,13 +4,13 @@ module.exports = async (req, res) => {
     try {
         //check if data exists
         const user = await User.findOne({
-            email: req.body.email
+            email: req.fields.email
         })
         //user does not exist
         if (!user) {
-            const newUser = new User(req.body)
+            const newUser = new User(req.fields)
             //hash the user's password
-            newUser.hashPassword(req.body.pass)
+            newUser.hashPassword(req.fields.pass)
             await newUser.save().then(data => {
                 if (data) {
                     return res.status(200).json({

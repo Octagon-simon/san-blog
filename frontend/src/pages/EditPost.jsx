@@ -22,7 +22,7 @@ export default function EditPost() {
     //fetch post with this title
     React.useEffect ( () => {
         if(title){
-            fetch(`import.meta.env.VITE_BACKEND_URL/post/${title}`, {
+            fetch(import.meta.env.VITE_BACKEND_URL+`/post/${title}`, {
             method: "GET",
             mode: 'cors',
             headers: {
@@ -49,11 +49,10 @@ export default function EditPost() {
 
 
 //all users
-    const state1 = useExternalScript("/summernote/jquery-3.4.1.slim.min.js")
-    const state2 = useExternalScript("/summernote/summernote-lite.min.js")
+    const state = useExternalScript("/summernote/summernote-lite.min.js")
 
     React.useEffect(() => {
-        if (state1 === "ready" && state2 === "ready") {
+        if (state === "ready") {
             jQuery('#summernote').summernote({
                 placeholder: 'Hello stand alone ui',
                 tabsize: 2,
@@ -74,7 +73,7 @@ export default function EditPost() {
                 }
             });
         }
-    }, [state1, state2])
+    }, [state])
 
     const handleSubmit = (e) => {
         //get form
@@ -102,7 +101,7 @@ export default function EditPost() {
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
-                        //btn.classList.remove('is-loading')
+                        btn.classList.remove('is-loading')
                         //btn.removeAttribute("disabled", "disabled")
                         toast.success(`${data.message}!`);
                         setTimeout(() => {
@@ -119,13 +118,15 @@ export default function EditPost() {
                 })
         }
     }
-
+    const setFileName = (e) => {
+        document.querySelector('.file-name').innerText = e.target.files[0].name
+    }
     React.useEffect( () =>{
-        if(data && (state1 === "ready" && state2 === "ready") && status === "ready"){
+        if(data && (state === "ready") && status === "ready"){
             //invalid left side assingment if you do this d() = value
             jQuery('#summernote').summernote('code', data.post.content)
         }
-    }, [data, state1, state2, status])
+    }, [data, state, status])
 
     const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
     return (
@@ -147,7 +148,7 @@ export default function EditPost() {
             : null
             }
             <link href="/summernote/summernote-lite.min.css" rel="stylesheet" />
-            { (state1 === "ready" && state2 === "ready" && status === "ready" && data) &&
+            { (state === "ready" && status === "ready" && data) &&
                 <div className="container mt-5 p-4 xbg-color">
                     <h3 className="title is-3 has-text-centered">Edit Post</h3>
                     <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
@@ -195,7 +196,7 @@ export default function EditPost() {
                                 <label className='label'>Select a Cover Image</label>
                                 <div className="file has-name">
                                     <label className="file-label">
-                                        <input id="inp_cover" className="file-input" type="file" name="cover" accept-mime="image/*" />
+                                        <input onChange={setFileName} id="inp_cover" className="file-input" type="file" name="cover" accept-mime="image/*" />
                                         <span className="file-cta">
                                             <span className="file-icon">
                                                 <i className="fas fa-upload"></i>

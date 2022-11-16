@@ -21,13 +21,13 @@ const fieldRules = {
 module.exports = (req, res, next) => {
     try{
         if(req.method == "POST"){
-            const fieldVal = validate.validateFields(fieldRules, req.body)
+            const fieldVal = validate.validateFields(fieldRules, req.fields)
             //validate the form
             if(!fieldVal){
                 return res.status(400).json({
                     success : false,
                     message : "Form validation failed",
-                    formData: req.body,
+                    formData: req.fields,
                     formErrors: validate.getErrors()
                 })
             }
