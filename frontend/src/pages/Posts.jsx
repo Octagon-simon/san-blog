@@ -115,7 +115,7 @@ function Posts() {
 
     return (
         <>
-            <div className="container blog-container mt-5 p-3">
+            <div className="container blog-container mt-5 p-3 centered-elem">
                 {(status === "ready" && data) ?
                     <><h4 className="title is-4 has-text-centered">All Posts</h4>
                         <div className="field mb-2 p-2 search-area">
@@ -142,9 +142,9 @@ function Posts() {
                     </>
 
                     : (status === "not ready") ?
-                        <p id="loader" className="has-text-centered should-be-centered"> <i className="fas fa-spinner fa-spin fa-5x has-text-app-primary"></i></p>
+                        <p id="loader" className="has-text-centered"> <i className="fas fa-spinner fa-spin fa-5x has-text-app-primary"></i></p>
                         : (status === "failed") ?
-                            <div className="has-text-centered should-be-centered p-4">
+                            <div className="has-text-centered p-4">
                                 <p><i className="fas fa-times-circle fa-5x has-text-app-primary"></i></p>
                                 <h4 className="title is-4 mt-4">Couldn't fetch Posts</h4>
                                 <button onClick={() => { window.location.reload() }} className="button is-app-primary is-act">Try again</button>
