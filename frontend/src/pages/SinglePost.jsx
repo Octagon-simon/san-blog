@@ -188,16 +188,6 @@ export default function SinglePost() {
                     }
                     {(status === "ready" && data) &&
                         <>
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                theme="dark"
-                            />
                             <section className="blog-post mt-5">
                                 <div className="blog-first has-text-centered">
                                     <h3 className="title is-5">{data.post.title}</h3>

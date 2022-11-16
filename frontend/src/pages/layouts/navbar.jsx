@@ -59,7 +59,7 @@ export default function Navbar() {
             <ToastContainer
                 position="top-right"
                 hideProgressBar={false}
-                autoClose={true}
+                autoClose={false}
                 newestOnTop={true}
                 closeOnClick
                 rtl={false}
