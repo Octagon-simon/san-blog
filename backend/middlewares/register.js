@@ -21,11 +21,11 @@ module.exports = (req, res, next) => {
     try{
         if(req.method == "POST"){
             //validate the form
-            if(!validate.validateFields(fieldRules, req.fields)){
+            if(!validate.validateFields(fieldRules, req.body)){
                 return res.status(400).json({
                     success : false,
                     message : "Form validation failed",
-                    formData: req.fields,
+                    formData: req.body,
                     formErrors: validate.getErrors()
                 })
             }
