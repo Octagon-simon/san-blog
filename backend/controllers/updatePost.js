@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     try {
         //check if data exists
         const post = await Post.findOne({
-            title: req.fields.old_title.replaceAll('-',' '),
+            title: req.fields.old_title,
             userId: req.fields.token
         })
         //post exists

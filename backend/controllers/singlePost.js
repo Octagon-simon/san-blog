@@ -5,9 +5,6 @@ module.exports = async (req, res) => {
     try {
         let title = req.params?.title
         if (req.method == "GET" && title) {
-            if(title.includes('-')){
-                title = req.params.title.replaceAll('-', ' ')
-            }
             const post = await Post.findOne({ title: new RegExp(title, 'i') }).populate('userId')
             if (post) {
                 const comments = await Comment.find({ postId: post._id });

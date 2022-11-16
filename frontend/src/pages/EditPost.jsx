@@ -85,7 +85,7 @@ export default function EditPost() {
         const formData = new FormData(form)
         //append user token to form data
         formData.append('token', token)
-        formData.append('old_title', title)
+        formData.append('old_title', title.replaceAll('-',' '))
         //get button
         const btn = form.querySelector(`button[form=${form.id}]`)
         if (myForm.validate()) {
