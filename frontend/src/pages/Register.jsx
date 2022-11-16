@@ -20,9 +20,11 @@ export default function () {
         //console.log(data)
     }
     const handleSubmit = function (e) {
-        const myForm = new octaValidate('form_register')
+        const form = e.target
+        const myForm = new octaValidate(form.id)
+        const formData = new FormData(form)
         //the submit button
-        const btn = e.target.querySelector('button');
+        const btn = form.querySelector('button');
         //prevent the page from reloading
         e.preventDefault();
         //validate form
@@ -32,12 +34,9 @@ export default function () {
             //do fetch
             fetch(import.meta.env.VITE_BACKEND_URL+'/register', {
                 method: "POST",
-                body: JSON.stringify(data),
-                mode: 'cors',
-                headers: {
-                    'content-type': 'application/json'
-                }
-            })
+                body: formData,
+                mode: 'cors'
+                })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {

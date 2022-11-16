@@ -2,12 +2,12 @@ const User = require('../models/userModel')
 
 module.exports = (req, res) => {
     try {
-        User.findOne({ email: req.body.email }, (err, user) => {
+        User.findOne({ email: req.fields.email }, (err, user) => {
             if (err) new Error(err)
             //check if user exists andn there's no error
             if (user) {
                 //compare user's hash with new hash
-                if (user.verifyPassword(req.body.pass)) {
+                if (user.verifyPassword(req.fields.pass)) {
                     return res.status(200).json({
                         success: true,
                         data: user._id,

@@ -31,9 +31,11 @@ export default function Login() {
         setData(values => ({ ...values, [name]: value }))
     }
     const handleSubmit = function (e) {
-        const myForm = new octaValidate('form_login')
+        const form = e.target
+        const formData = new FormData(form)
+        const myForm = new octaValidate(form.id)
         //the submit button
-        const btn = e.target.querySelector('button');
+        const btn = form.querySelector('button');
         //prevent the page from reloading
         e.preventDefault();
         //validate form
@@ -43,11 +45,8 @@ export default function Login() {
             //do fetch
             fetch(import.meta.env.VITE_BACKEND_URL+'/login', {
                 method: "POST",
-                body: JSON.stringify(data),
-                mode: 'cors',
-                headers: {
-                    'content-type': 'application/json'
-                }
+                body: formData,
+                mode: 'cors'
             })
                 .then(res => res.json())
                 .then(data => {
