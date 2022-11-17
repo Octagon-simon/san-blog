@@ -46,11 +46,15 @@ function App() {
   //check and toggle dark mode
   useEffect( () => {
     if(colorScheme == 'light'){
+      document.querySelector('html').classList.remove('dark')
       document.body.classList.remove('dark')
       document.body.classList.add('light')
+      document.querySelector('html').classList.add('light')
     }else{
+      document.querySelector('html').classList.remove('light')
       document.body.classList.remove('light')
       document.body.classList.add('dark')
+      document.querySelector('html').classList.add('dark')
     }
   }, [colorScheme])
 
@@ -59,14 +63,18 @@ function App() {
     //e.currentTarget is the button
     const elem = e.target
     if(colorScheme == 'light'){
+      document.querySelector('html').classList.remove('light')
       document.body.classList.remove('light')
+      document.querySelector('html').classList.toggle('dark')
       document.body.classList.toggle('dark')
       elem.removeAttribute("class")
       elem.setAttribute("class", "fas fa-sun")
       setColorScheme("dark")
       localStorage.setItem('colorScheme', 'dark')
     }else{
+      document.querySelector('html').classList.remove('dark')
       document.body.classList.remove('dark')
+      document.querySelector('html').classList.toggle('light')
       document.body.classList.toggle('light')
       elem.removeAttribute("class")
       elem.setAttribute("class", "fas fa-moon")

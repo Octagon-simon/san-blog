@@ -120,7 +120,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="navbar-end">
-                        <div className="navbar-item">
+                        <div className="navbar-item has-buttons">
                             <div className="buttons">
                                 {(!token) ?
                                     <>

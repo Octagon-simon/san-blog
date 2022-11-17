@@ -58,7 +58,7 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <div className="container mt-5">
+            <div className="container mt-5 mb-5">
                 {(status === "ready" && data) ?
                     <section className="container p-4 home-posts-container">
                         <h4 className="title is-4 center-on-mobile">Recent Posts</h4>

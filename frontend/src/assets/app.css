@@ -24,14 +24,18 @@ div#root {
     font-family: 'Poppins', sans-serif !important;
 }
 
+html.dark,
 body.dark {
     color: rgb(185, 179, 170);
     background-color: rgb(24, 26, 27);
     scroll-behavior: initial;
 }
-body.dark div#root, body.dark .hero{
+
+body.dark div#root,
+body.dark .hero {
     background-color: rgb(24, 26, 27) !important;
-}   
+}
+
 body.dark .navbar {
     background-color: rgb(30, 32, 33);
 }
@@ -41,14 +45,19 @@ body.dark .navbar .navbar-link {
     color: rgb(185, 179, 170) !important
 }
 
-body.dark .navbar .navbar-item:hover,
-body.dark .navbar .navbar-link:hover,
+body.dark .navbar .navbar-item:not(.navbar-item.has-buttons):hover,
+body.dark .navbar .navbar-link:hover {
+    background-color: rgb(38, 38, 38) !important;
+}
+
 body.dark .navbar .navbar-item:focus,
-body.dark .navbar .navbar-item.has-dropdown:focus .navbar-link{
+body.dark .navbar .navbar-item.has-dropdown:hover .navbar-link,
+body.dark .navbar .navbar-item.has-dropdown .navbar-link:focus {
     background-color: rgb(23, 24, 25) !important;
 }
 
-body.dark .navbar-menu, body.dark .navbar-dropdown {
+body.dark .navbar-menu,
+body.dark .navbar-dropdown {
     background-color: rgb(24, 26, 27);
     box-shadow: rgba(8, 8, 8, 0.1) 0px 8px 16px;
 }
@@ -57,9 +66,11 @@ body.dark .navbar-burger {
     color: rgb(185, 179, 170);
 }
 
-body.dark .button.is-light {
-    background-color: rgb(34, 36, 38);
-    border-bottom-color: rgba(0, 0, 0, 0)
+body.dark .button.is-light,
+body.dark .button.is-app-primary-outline {
+    background-color: rgb(34, 36, 38) !important;
+    color: #1d70fd !important;
+    border-color: #1d70fd !important;
 }
 
 body.dark .button.is-light {
@@ -73,12 +84,46 @@ body.dark.has-text-app-primary {
 body.dark .single-post {
     background-color: rgb(34, 36, 38);
 }
-body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark h6,body.dark .subtitle,body.dark p,  body.dark strong{
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6,
+body.dark .subtitle,
+body.dark p,
+body.dark label,
+body.dark strong {
     color: rgb(185, 179, 170) !important;
 }
-body.dark .container{
+
+body.dark .container {
     background-color: transparent;
 }
+
+body.dark .card {
+    background-color: rgb(35, 37, 38);
+    box-shadow: rgba(8, 8, 8, 0.1) 0px 0.5em 1em -0.125em, rgba(8, 8, 8, 0.02) 0px 0px 0px 1px;
+    color: rgb(185, 179, 170);
+}
+
+body.dark .has-text-app-primary {
+    color: rgb(29, 112, 253) !important;
+}
+
+body.dark input.input,
+body.dark textarea.textarea {
+    background-color: #0c0c10;
+    border: 2px solid #29202f;
+    color: #fff !important;
+}
+
+body.dark input.input::placeholder,
+body.dark textarea.textarea::placeholder {
+    color: #fff !important;
+}
+
 /*
 
 
@@ -125,7 +170,6 @@ body.light {
 
 .font-pacifico {
     font-family: 'Pacifico', cursive !important;
-    letter-spacing: 1px;
 }
 
 .d-none {
