@@ -99,7 +99,7 @@ function Posts() {
                     setPageNumbers([...Array(numOfPages + 1).keys()].slice(1))
                 } else {
                     setData(null)
-                    setStatus("failed")
+                    setStatus("null")
                 }
             })
             .catch(err => {
