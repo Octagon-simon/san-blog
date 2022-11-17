@@ -17,7 +17,7 @@ export default function NewPost() {
         }
     }, [token])
 
-//all users
+    //all users
     const state = useExternalScript("/summernote/summernote-lite.min.js")
 
     React.useEffect(() => {
@@ -62,7 +62,7 @@ export default function NewPost() {
             btn.classList.toggle('is-loading')
             btn.setAttribute("disabled", "disabled")
 
-            fetch(import.meta.env.VITE_BACKEND_URL+'/new-post', {
+            fetch(import.meta.env.VITE_BACKEND_URL + '/new-post', {
                 method: "POST",
                 body: formData,
                 mode: 'cors'
@@ -97,7 +97,7 @@ export default function NewPost() {
     return (
         <>
             <link href="/summernote/summernote-lite.min.css" rel="stylesheet" />
-            { (state === "ready") &&
+            {(state === "ready") &&
                 <div className="container mt-5 p-4 xbg-color">
                     <h3 className="title is-3 has-text-centered">Submit A New Post</h3>
                     <h5 className="subtitle has-text-centered has-text-app-primary">Put your thoughts into writing...</h5>
@@ -106,7 +106,7 @@ export default function NewPost() {
                             <div className="field">
                                 <label className="label">Post Title</label>
                                 <p className="control has-icons-left has-icons-right">
-                                    <input id="inp_title" name="title" className="input" type="text" placeholder="Enter Post Title" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required:msg": "Post title is required" }} />
+                                    <input id="inp_title" name="title" className="input" type="text" placeholder="Enter Post Title" octavalidate="R,ALPHA_SPACES" ov-required-msg="Post title is required" />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
@@ -115,7 +115,7 @@ export default function NewPost() {
                             <div className="field">
                                 <label className="label">Post Subtitle</label>
                                 <p className="control has-icons-left">
-                                    <input className="input" type="text" placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,ALPHA_SPACES"  {...{ "ov-required:msg": "Post subtitle is required" }} />
+                                    <input className="input" type="text" placeholder="Enter Post Subtitle" id="inp_pwd" name="subtitle" octavalidate="R,ALPHA_SPACES" ov-required-msg="Post subtitle is required" />
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>
@@ -124,18 +124,18 @@ export default function NewPost() {
                             <div className="field">
                                 <label className="label">Post Category</label>
                                 <div className="control has-icons-left">
-                                <div className="select is-fullwidth">
-                                    <select id="select_record_count" octavalidate="R,TEXT" name="category" className="" ov-required-msg="Post category is required">
-                                        <option value="">Select a Category</option>
-                                        { 
-                                        blogCategories.map( (val, ind) => {
-                                            return(
-                                                <option key={ind}>{val}</option>
-                                            )
-                                        })
-                                        }
-                                    </select>
-                                </div>
+                                    <div className="select is-fullwidth">
+                                        <select id="select_record_count" octavalidate="R,TEXT" name="category" className="" ov-required-msg="Post category is required">
+                                            <option value="">Select a Category</option>
+                                            {
+                                                blogCategories.map((val, ind) => {
+                                                    return (
+                                                        <option key={ind}>{val}</option>
+                                                    )
+                                                })
+                                            }
+                                        </select>
+                                    </div>
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-object-group"></i>
                                     </span>
@@ -145,7 +145,7 @@ export default function NewPost() {
                                 <label className='label'>Select a Cover Image</label>
                                 <div className="file has-name">
                                     <label className="file-label">
-                                        <input onChange={setFileName} id="inp_cover" className="file-input" type="file" name="cover" octavalidate="R" accept-mime="image/*" {...{ "ov-required:msg": "Cover image is required" }} />
+                                        <input onChange={setFileName} id="inp_cover" className="file-input" type="file" name="cover" octavalidate="R" accept-mime="image/*" ov-required-msg="Cover image is required" />
                                         <span className="file-cta">
                                             <span className="file-icon">
                                                 <i className="fas fa-upload"></i>
@@ -163,7 +163,7 @@ export default function NewPost() {
                                 <label className="label">Post Content</label>
                                 <p className="control has-icons-left">
                                     <textarea id="summernote"></textarea>
-                                    <textarea className="d-hidden" name="content" placeholder="Type in your content" id="inp_content" octavalidate="R" {...{ "ov-required:msg": "Post content is required" }}></textarea>
+                                    <textarea className="d-hidden" name="content" placeholder="Type in your content" id="inp_content" octavalidate="R" ov-required-msg="Post content is required"></textarea>
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-font"></i>
                                     </span>

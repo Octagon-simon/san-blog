@@ -11,12 +11,8 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-body {
-    min-height: 100%
-}
-
 div#root {
-    height: auto;
+    height: auto !important;
     min-height: 100%;
 }
 
@@ -29,20 +25,63 @@ div#root {
 }
 
 body.dark {
-    color: rgb(198, 193, 185);
+    color: rgb(185, 179, 170);
     background-color: rgb(24, 26, 27);
     scroll-behavior: initial;
 }
+body.dark div#root, body.dark .hero{
+    background-color: rgb(24, 26, 27) !important;
+}   
+body.dark .navbar {
+    background-color: rgb(30, 32, 33);
+}
 
+body.dark .navbar .navbar-item,
+body.dark .navbar .navbar-link {
+    color: rgb(185, 179, 170) !important
+}
+
+body.dark .navbar .navbar-item:hover,
+body.dark .navbar .navbar-link:hover,
+body.dark .navbar .navbar-item:focus,
+body.dark .navbar .navbar-item.has-dropdown:focus .navbar-link{
+    background-color: rgb(23, 24, 25) !important;
+}
+
+body.dark .navbar-menu, body.dark .navbar-dropdown {
+    background-color: rgb(24, 26, 27);
+    box-shadow: rgba(8, 8, 8, 0.1) 0px 8px 16px;
+}
+
+body.dark .navbar-burger {
+    color: rgb(185, 179, 170);
+}
+
+body.dark .button.is-light {
+    background-color: rgb(34, 36, 38);
+    border-bottom-color: rgba(0, 0, 0, 0)
+}
+
+body.dark .button.is-light {
+    color: rgba(232, 230, 227, 0.7)
+}
+
+body.dark.has-text-app-primary {
+    color: #1d70fd !important;
+}
+
+body.dark .single-post {
+    background-color: rgb(34, 36, 38);
+}
+body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark h6,body.dark .subtitle,body.dark p,  body.dark strong{
+    color: rgb(185, 179, 170) !important;
+}
+body.dark .container{
+    background-color: transparent;
+}
 /*
-body.dark label,h1,h2,h3,h4,h5,h6,p{
-    color: rgb(198, 193, 185) !important;
-}
-body.dark .navbar{
-    background-color: inherit;
-    box-shadow: 0px 0px 8px #000;
-    color:#fff;
-}
+
+
 body.dark .navbar .navbar-menu{
     background-color: inherit;
     color:#fff ;
@@ -62,6 +101,11 @@ body.dark .form-control {
 body.light {
     color: #000;
     background-color: #fff;
+}
+
+.form-section {
+    max-width: 500px;
+    margin: auto;
 }
 
 ::-webkit-scrollbar {
@@ -153,8 +197,8 @@ body.light {
 .select select:focus,
 .textarea:active,
 .textarea:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 .125em #e2afff !important;
+    border-color: #1d1e91 !important;
+    box-shadow: 0 0 0 .125em #dadbff !important;
 }
 
 .navbar {
@@ -491,6 +535,18 @@ footer {
 
 footer strong {
     color: #fff !important;
+}
+
+.about-title {
+    background: linear-gradient(140deg, rgb(29, 17, 218) 31%, rgb(120, 0, 184) 100%);
+    background-clip: border-box;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+section.is-section {
+    box-shadow: 0px 0px 8px #ddd;
+    padding: 10px;
 }
 
 :root {

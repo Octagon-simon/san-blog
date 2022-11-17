@@ -81,7 +81,7 @@ export default function Login() {
                     <div className="field">
                         <label className="label font-roboto">Your Email</label>
                         <p className="control has-icons-left has-icons-right">
-                            <input id="inp_email" name="email" className="input" type="email" placeholder="Enter Your Email" octavalidate="R,EMAIL" value={data.email} onChange={handleChange} {...{"ov-required:msg":"Your email address is required"}} />
+                            <input id="inp_email" name="email" className="input" type="email" placeholder="Enter Your Email" octavalidate="R,EMAIL" value={data.email} onChange={handleChange} ov-required-msg="Your email address is required" />
                             <span className="icon is-small is-left">
                                 <i className="fas fa-envelope"></i>
                             </span>

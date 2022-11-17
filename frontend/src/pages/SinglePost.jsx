@@ -28,7 +28,7 @@ export default function SinglePost() {
                         setStatus("ready")
                     } else {
                         setData(null)
-                        setStatus("null")
+                        setStatus("failed")
                     }
                 })
                 .catch(err => {
@@ -284,7 +284,7 @@ export default function SinglePost() {
                                                             <article dangerouslySetInnerHTML={{ __html: val.content.substr(0, 200) + "..." }}></article>
                                                         </div>
                                                         <p className="single-post-comment"><strong>{val.comments.length}</strong> {(val.comments.length === 1) ? 'comment' : 'comments'}</p>
-                                                        <button className="button is-app-primary btn-act has-fa-icon" onClick={() => { handleReadPost(val.title) }}>Read post&nbsp;<i className="fas fa-arrow-right fa-sm"></i></button>
+                                                        <a className="button is-app-primary btn-act has-fa-icon" href={window.location.origin+'/post/'+val.title}>Read post&nbsp;<i className="fas fa-arrow-right fa-sm"></i></a>
                                                     </div>
                                                 </section>
                                             )

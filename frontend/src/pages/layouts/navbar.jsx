@@ -70,7 +70,7 @@ export default function Navbar() {
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a className="navbar-item font-pacifico" href="./">
-                        sanBlog
+                        SanBlog
                     </a>
 
                     <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="sanBlogNavBar" onClick={(event) => toggleMobileNav(event)}>
@@ -111,6 +111,12 @@ export default function Navbar() {
                                 }
                             </div>
                         </div>
+                        <Link onClick={unToggleMobileNav} to="/about" className="navbar-item">
+                            About us
+                        </Link>
+                        <Link onClick={unToggleMobileNav} to="/contact" className="navbar-item">
+                            Contact us
+                        </Link>
                     </div>
 
                     <div className="navbar-end">

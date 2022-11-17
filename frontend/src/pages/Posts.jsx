@@ -8,9 +8,16 @@ function Posts() {
     const [status, setStatus] = useState("not ready")
     const [data, setData] = useState(null)
     const [filter, setFilter] = useState({
-        category: searchParams.get('category')?.replaceAll('-',' ') || '',
+        category: searchParams.get('category')?.replaceAll('-', ' ') || '',
         search: ''
     })
+    const handleFilterChange = (event) => {
+        //event.persist();
+        setFilter((prev) => ({
+            ...prev,
+            [event.target.name]: event.target.value,
+        }));
+    };
     const [currentPage, setCurrentPage] = useState(1)
     const [numOfPages, setNumOfPages] = useState(1)
     const [pageNumbers, setPageNumbers] = useState(1)
@@ -19,8 +26,6 @@ function Posts() {
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage
 
     const Pagination = ({ numOfPages, currentPage, setCurrentPage }) => {
-        console.log(numOfPages, "FROM PAGINATION")
-        console.log([...Array(numOfPages + 1).keys()].slice(1))
         const pageNumbers = [...Array(numOfPages + 1).keys()].slice(1)
 
         const nextPage = () => {
@@ -75,8 +80,8 @@ function Posts() {
     //const r = FetchGet('import.meta.env.VITE_BACKEND_URL/posts')
 
     React.useEffect(() => {
-        let url = new URL(import.meta.env.VITE_BACKEND_URL+'/posts');
-        url.searchParams.append('category', filter.category.replaceAll('-',' ') || '')
+        let url = new URL(import.meta.env.VITE_BACKEND_URL + '/posts');
+        url.searchParams.append('category', filter?.category.replaceAll('-', ' ') || '')
         url.searchParams.append('search', filter.search || '')
         fetch(url.href, {
             method: "GET",
@@ -92,11 +97,9 @@ function Posts() {
                     setStatus("ready")
                     setNumOfPages(Math.ceil(data.posts.length / recordsPerPage))
                     setPageNumbers([...Array(numOfPages + 1).keys()].slice(1))
-
-                    console.log(Math.ceil(data.posts.length / recordsPerPage), pageNumbers)
                 } else {
                     setData(null)
-                    setStatus("null")
+                    setStatus("failed")
                 }
             })
             .catch(err => {
@@ -107,26 +110,26 @@ function Posts() {
     }, [filter]);
 
     const handleReadPost = (title) => {
-        console.log(title);
+        // console.log(title);
         navigate(`/post/${title.replaceAll(' ', '-')}`)
     }
 
     const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
-
+    //work on the filter state. crreate a function that will update it when a value is rpovded
     return (
         <>
-            <div className="container blog-container mt-5 p-3 centered-elem">
+            <div className="container blog-container mt-5 p-3">
                 {(status === "ready" && data) ?
                     <><h4 className="title is-4 has-text-centered">All Posts</h4>
                         <div className="field mb-2 p-2 search-area">
                             <label>Search for a post</label>
-                            <input className="input" type="text" placeholder="Search for a post" id="inp_filter" onChange={(e) => { setFilter({ search: e.target.value }) }} />
+                            <input onChange={handleFilterChange} name="search" className="input" type="text" placeholder="Search for a post" id="inp_filter" defaultValue={filter.search} />
                         </div>
                         <div className="filter-area">
                             <div className="field" style={{ maxWidth: "300px", marginLeft: "auto" }}>
                                 <label>Filter by</label>
                                 <div className="select is-fullwidth">
-                                    <select onChange={(e) => setFilter({ category: e.target.value })} id="select_blog_category" className="" defaultValue={filter.category}>
+                                    <select name='category' id="select_blog_category" className="" onChange={handleFilterChange} defaultValue={filter.category}>
                                         <option value="">All Categories</option>
                                         {
                                             blogCategories.map((val, ind) => {
@@ -153,13 +156,13 @@ function Posts() {
                             <>
                                 <div className="field mb-2 p-2 search-area">
                                     <label>Search for a post</label>
-                                    <input className="input" type="text" placeholder="Search for a post" id="inp_filter" onChange={(e) => { setFilter({ search: e.target.value }) }} />
+                                    <input name='search' onChange={handleFilterChange} className="input" type="text" placeholder="Search for a post" id="inp_filter" defaultValue={filter.search} />
                                 </div>
                                 <div className="filter-area">
                                     <div className="field" style={{ maxWidth: "300px", marginLeft: "auto" }}>
                                         <label>Filter by</label>
                                         <div className="select is-fullwidth">
-                                            <select onChange={(e) => setFilter({ category: e.target.value })} id="select_blog_category" className="" defaultValue={filter.category}>
+                                            <select name="category" onChange={handleFilterChange} id="select_blog_category" className="" defaultValue={filter.category}>
                                                 <option value="">All Categories</option>
                                                 {
                                                     blogCategories.map((val, ind) => {
@@ -211,7 +214,6 @@ function Posts() {
                 {
                     (status === 'ready' && data && numOfPages) &&
                     <>
-                        {console.log(numOfPages, " fromstatus")}
                         <Pagination numOfPages={numOfPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                     </>
 
