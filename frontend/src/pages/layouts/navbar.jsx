@@ -34,24 +34,23 @@ export default function Navbar() {
     //check for changes in the variable
     React.useEffect(() => {
         if (location) {
-            document.addEventListener('DOMContentLoaded', function () {
-                if (document.querySelector('a')) {
-                    //remove any active class present in any element
-                    document.querySelectorAll('a').forEach(elem => {
-                        elem.classList.remove('navbar-item-active')
-                    })
-                    //console.log(window.location.origin + location.pathname + location.search)
-                    //set the active class on the element with the current url pathname
-                    const elem = (location.pathname && !location.search) ? document.querySelector(
-                        `a[href="${location.pathname}"]`
-                    ) : document.querySelector(
-                        `a[href="${window.location.origin + location.pathname + location.search}"]`
-                    );
-                    if (elem && !elem.classList.contains('button')) {
-                        elem.classList.add('navbar-item-active')
-                    }
+            console.log("loaded")
+            if (document.querySelector('a')) {
+                //remove any active class present in any element
+                document.querySelectorAll('a').forEach(elem => {
+                    elem.classList.remove('navbar-item-active')
+                })
+                //console.log(window.location.origin + location.pathname + location.search)
+                //set the active class on the element with the current url pathname
+                const elem = (location.pathname && !location.search) ? document.querySelector(
+                    `a[href="${location.pathname}"]`
+                ) : document.querySelector(
+                    `a[href="${window.location.origin + location.pathname + location.search}"]`
+                );
+                if (elem && !elem.classList.contains('button')) {
+                    elem.classList.add('navbar-item-active')
                 }
-            })
+            }
         }
     }, [location])
 
