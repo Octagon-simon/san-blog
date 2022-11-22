@@ -42,7 +42,7 @@ body.dark .navbar {
 
 body.dark .navbar .navbar-item,
 body.dark .navbar .navbar-link {
-    color: rgb(185, 179, 170) !important
+    color: #fff !important
 }
 
 body.dark .navbar .navbar-item:not(.navbar-item.has-buttons):hover,
@@ -90,12 +90,19 @@ body.dark h2,
 body.dark h3,
 body.dark h4,
 body.dark h5,
-body.dark h6,
+body.dark h6{
+    color : #fff;
+}
 body.dark .subtitle,
 body.dark p,
 body.dark label,
-body.dark strong {
+body.dark strong:not(.button strong) {
     color: rgb(185, 179, 170) !important;
+}
+
+body.dark .auth-form-section, body.dark .form-section{
+    box-shadow: none !important;
+    border: 2px solid #bebebe !important;
 }
 
 body.dark .container {
@@ -125,10 +132,13 @@ body.dark textarea.textarea::placeholder {
 }
 
 .navbar .navbar-item-active {
-    color: var(--primary) !important;
-    background-color: #e4e4ff !important;
+    color: var(--primary);
+    background-color: #e4e4ff;
 }
 
+body.dark .navbar .navbar-item-active{
+    background-color: #242424 !important;
+}
 /*
 
 
@@ -445,11 +455,8 @@ body.light {
 }
 
 .blog-category a {
-    color: var(--primary);
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    font-size: .9em;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .filter-area {

@@ -63,8 +63,8 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-            <div className="container mt-5 mb-5 p-3">
-                <section className="form-section">
+            <div className="container mt-5 mb-5">
+                <section className="form-section p-3">
                     <div className="mt-5 mb-5 center-on-mobile">
                         <h4 className="title is-3 mb-2">Send us a message</h4>
                         <p className="mb-2">Our team is available <strong>24/7</strong> to help you with any complaint you may have</p>

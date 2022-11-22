@@ -194,7 +194,7 @@ export default function SinglePost() {
                                     <h5 className="subtitle">{data.post.subtitle}</h5>
                                 </div>
                                 <div className="blog-category has-text-centered">
-                                    <p>Posted in <a href={'../posts?category='+data.post?.category || "Other"}>{data.post?.category || "Other"}</a></p>
+                                    <p>Category: <a href={'../posts?category='+data.post?.category || "Other"}>{data.post?.category || "Other"}</a></p>
                                 </div>
                                 <div className="blog-second has-text-centered">
                                     <div className="blog-cover">

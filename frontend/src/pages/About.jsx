@@ -7,7 +7,7 @@ export default function About() {
             <section>
                 <div className='container mt-5 mb-5 p-3'>
                     <div className='has-text-centered'>
-                        <h2 className="title is-2 about-title">ABOUT US</h2>
+                        <h2 className="title is-1 about-title">ABOUT US</h2>
                         <h5 className="subtitle">Learn more about who we are</h5>
                     </div>
                     <section className="sis-section mt-5">
