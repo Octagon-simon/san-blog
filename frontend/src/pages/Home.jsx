@@ -58,6 +58,9 @@ function Home() {
                     </div>
                 </div>
             </section>
+            <div className='container'>
+                In SanBlog, you are free to make any post!
+            </div>
             <div className="container mt-5 mb-5">
                 {(status === "ready" && data) ?
                     <section className="container p-4 home-posts-container">
@@ -106,10 +109,7 @@ function Home() {
                             null
                 }
             </div>
-
         </>
 
     )
 }
-
-export default Home

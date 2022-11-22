@@ -85,24 +85,27 @@ body.dark .single-post {
     background-color: rgb(34, 36, 38);
 }
 
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5,
-body.dark h6{
-    color : #fff;
+body.dark h1:not(.note-dropdown-menu h1),
+body.dark h2:not(.note-dropdown-menu h2),
+body.dark h3:not(.note-dropdown-menu h3),
+body.dark h4:not(.note-dropdown-menu h4),
+body.dark h5:not(.note-dropdown-menu h5),
+body.dark h6:not(.note-dropdown-menu h6) {
+    color: #fff;
 }
+
 body.dark .subtitle,
 body.dark p,
 body.dark label,
-body.dark strong:not(.button strong) {
+body.dark strong:not(.button strong),
+.note-frame {
     color: rgb(185, 179, 170) !important;
 }
 
-body.dark .auth-form-section, body.dark .form-section{
+body.dark .auth-form-section,
+body.dark .form-section {
     box-shadow: none !important;
-    border: 2px solid #bebebe !important;
+    border: 2px solid #222 !important;
 }
 
 body.dark .container {
@@ -126,6 +129,11 @@ body.dark textarea.textarea {
     color: #fff !important;
 }
 
+body.dark > input:focus, input:active, textarea:focus, textarea:active{
+    border-color: unset !important;
+    box-shadow: none !important;
+} 
+
 body.dark input.input::placeholder,
 body.dark textarea.textarea::placeholder {
     color: #fff !important;
@@ -136,9 +144,10 @@ body.dark textarea.textarea::placeholder {
     background-color: #e4e4ff;
 }
 
-body.dark .navbar .navbar-item-active{
+body.dark .navbar .navbar-item-active {
     background-color: #242424 !important;
 }
+
 /*
 
 
@@ -325,6 +334,10 @@ body.light {
     background-color: #f9f9f9;
 }
 
+body.dark .blog-last article {
+    background-color: #1e1e1e !important;
+}
+
 .single-post-divider {
     border-top: 1px dashed;
 }
@@ -335,7 +348,13 @@ body.light {
 
 .blog-post .blog-cover {
     width: 100%;
-    height: 350px;
+    height: 500px;
+}
+
+ol,
+ul {
+    margin: 16px 0 !important;
+    padding: 0 0 0 40px !important;
 }
 
 .blog-post .blog-cover img {
@@ -349,7 +368,6 @@ body.light {
 
 .blog-post .blog-first h3 {
     text-transform: capitalize;
-    color: #000;
 }
 
 .blog-third {

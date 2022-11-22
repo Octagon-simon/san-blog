@@ -63,7 +63,7 @@ export default function Contact() {
                     </div>
                 </div>
             </section>
-            <div className="container mt-5 mb-5">
+            <div className="container mt-5 mb-5 p-3">
                 <section className="form-section p-3">
                     <div className="mt-5 mb-5 center-on-mobile">
                         <h4 className="title is-3 mb-2">Send us a message</h4>
