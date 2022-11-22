@@ -8,16 +8,17 @@ export default function Navbar() {
     const { token, setToken, destroyToken } = useToken();
     const navigate = useNavigate()
     const [logOut, setLogOut] = useState(false)
-    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
+    //admin to be able to create blog categories
+    const blogCategories = ['CSS', 'HTML', 'JavaScript', 'MongoDB', 'MySQL', 'NodeJS', 'PHP', 'ReactJS', 'Others'];
 
     const toggleMobileNav = function (e) {
         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-        document.querySelector('.navbar-burger').classList.toggle('is-active');
-        document.querySelector('.navbar-menu').classList.toggle('is-active');
+        document.querySelector('.navbar-burger')?.classList.toggle('is-active');
+        document.querySelector('.navbar-menu')?.classList.toggle('is-active');
     }
     const unToggleMobileNav = () => {
-        document.querySelector('.navbar-burger').classList.remove('is-active');
-        document.querySelector('.navbar-menu').classList.remove('is-active');
+        document.querySelector('.navbar-burger')?.classList.remove('is-active');
+        document.querySelector('.navbar-menu')?.classList.remove('is-active');
     }
     const LogOut = (e) => {
         console.log(e)
@@ -30,52 +31,54 @@ export default function Navbar() {
         }, 3000)
         //you cant call hooks inside a function?
     }
-        //check for changes in the variable
-        React.useEffect(() => {
-            if(location){
-                console.log(location)
-                //remove any active class present in any element
-                document.querySelectorAll('a').forEach(elem => {
-                    elem.classList.remove('navbar-item-active')
-                })
-                console.log(window.location.origin+'/'+location.pathname+location.search)
-                //set the active class on the element with the current url pathname
-                const elem = (location.pathname && !location.search) ? document.querySelector(
-                    `a[href="${location.pathname}"]`
-                    ) : document.querySelector(
-                        `a[href="${window.location.origin+location.pathname+location.search}"]`
-                        )
-                if(!elem.classList.contains('button')){
-                    elem.classList.add('navbar-item-active')
-                }
-            }
-        }, [location])
-
-        /*
-
-import React from 'react'
-import { useLocation } from 'react-router-dom/client'
-
-export default function Navbar() {
-    //invoke the function
-    const location = useLocation()
     //check for changes in the variable
     React.useEffect(() => {
-        if(location){
-            //remove any active class present in any element
-            document.querySelectorAll('a').forEach(elem => {
-                elem.classList.remove('is-active')
+        if (location) {
+            document.addEventListener('DOMContentLoaded', function () {
+                if (document.querySelector('a')) {
+                    //remove any active class present in any element
+                    document.querySelectorAll('a').forEach(elem => {
+                        elem.classList.remove('navbar-item-active')
+                    })
+                    //console.log(window.location.origin + location.pathname + location.search)
+                    //set the active class on the element with the current url pathname
+                    const elem = (location.pathname && !location.search) ? document.querySelector(
+                        `a[href="${location.pathname}"]`
+                    ) : document.querySelector(
+                        `a[href="${window.location.origin + location.pathname + location.search}"]`
+                    );
+                    if (elem && !elem.classList.contains('button')) {
+                        elem.classList.add('navbar-item-active')
+                    }
+                }
             })
-            //set the active class on the element with the current url pathname
-            document.querySelector(
-                `a[href="${location.pathname}"]`
-                ).classList.add('is-active')
         }
     }, [location])
-}
 
 
-        */
+    /*
+    import React from 'react'
+    import { useLocation } from 'react-router-dom'
+    
+    export default function Navbar() {
+        //invoke the function
+        const location = useLocation()
+        //check for changes in the variable
+        React.useEffect(() => {
+            if(location.pathname){
+                //remove any active class present in any element
+                document.querySelectorAll('a').forEach(elem => {
+                    elem.classList.remove('active-class')
+                })
+                //set the active class on the element 
+                with the current url pathname
+                document.querySelector(
+                    `a[href="${location.pathname}"]`
+                ).classList.add('active-class')
+            }
+        }, [location])
+    }*/
+
     //useEffect is like using event listeners on a variable
     //the second argument checks if the variable has changed its value
     //the variable can be passed as a state that can be updated

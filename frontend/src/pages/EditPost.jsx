@@ -128,7 +128,7 @@ export default function EditPost() {
         }
     }, [data, state, status])
 
-    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
+    const blogCategories = ['CSS',  'HTML', 'JavaScript', 'MongoDB', 'MySQL', 'NodeJS', 'PHP', 'ReactJS', 'Others'];
     return (
         <>  
             {(status === "not ready") ? 

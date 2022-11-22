@@ -92,8 +92,7 @@ export default function NewPost() {
     const setFileName = (e) => {
         document.querySelector('.file-name').innerText = e.target.files[0].name
     }
-    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other', 'Animation'];
-
+    const blogCategories = ['CSS',  'HTML', 'JavaScript', 'MongoDB', 'MySQL', 'NodeJS', 'PHP', 'ReactJS', 'Others'];
     return (
         <>
             <link href="/summernote/summernote-lite.min.css" rel="stylesheet" />

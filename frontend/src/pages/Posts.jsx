@@ -114,8 +114,7 @@ function Posts() {
         navigate(`/post/${title.replaceAll(' ', '-')}`)
     }
 
-    const blogCategories = ['Science and Technology', 'Entertainment', 'Sports', 'Self Development', 'Health', 'Inspiration', 'Other'];
-    //work on the filter state. crreate a function that will update it when a value is rpovded
+    const blogCategories = ['CSS',  'HTML', 'JavaScript', 'MongoDB', 'MySQL', 'NodeJS', 'PHP', 'ReactJS', 'Others'];
     return (
         <>
             <div className="container blog-container mt-5 p-3">
