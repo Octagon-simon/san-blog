@@ -2,6 +2,7 @@
 
 This is a full working blogging solution built using the MERN stack.
 
+![image](https://user-images.githubusercontent.com/68190998/209425650-3960e48e-7fe5-4ec4-842d-fb354b741817.png)
 
 ## ✅ FEATURES
 
