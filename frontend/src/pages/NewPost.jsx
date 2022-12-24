@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useExternalScript } from '../externalScript'
-import { octaValidate } from 'octavalidate-reactjs'
+import { octaValidate } from '../ov-new'
 import { useToken } from '../useToken'
 import { useNavigate } from 'react-router-dom'
 
@@ -48,7 +48,13 @@ export default function NewPost() {
         e.stopPropagation();
         //get form #582be8
         const form = e.target
-        const myForm = new octaValidate(form.id)
+        //initialize the library and set the element to append errors after
+        const myForm = new octaValidate(form.id, {
+            errorElem : {
+                "select_record_count" : "select_wrapper",
+                "inp_cover" : "file_wrapper"
+            }
+        })
         //prevent reload
         e.preventDefault()
         //get form data
@@ -123,7 +129,7 @@ export default function NewPost() {
                             <div className="field">
                                 <label className="label">Post Category</label>
                                 <div className="control has-icons-left">
-                                    <div className="select is-fullwidth">
+                                    <div id="select_wrapper" className="select is-fullwidth">
                                         <select id="select_record_count" octavalidate="R,TEXT" name="category" className="" ov-required-msg="Post category is required">
                                             <option value="">Select a Category</option>
                                             {
@@ -142,7 +148,7 @@ export default function NewPost() {
                             </div>
                             <div className='field'>
                                 <label className='label'>Select a Cover Image</label>
-                                <div className="file has-name">
+                                <div id="file_wrapper" className="file has-name">
                                     <label className="file-label">
                                         <input onChange={setFileName} id="inp_cover" className="file-input" type="file" name="cover" octavalidate="R" accept-mime="image/*" ov-required-msg="Cover image is required" />
                                         <span className="file-cta">

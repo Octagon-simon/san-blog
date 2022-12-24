@@ -49,7 +49,7 @@ function Home() {
                 <div className="hero-body">
                     <div className="container has-text-centered" style={{ top: '30%' }}>
                         <h1 className="title is-1 has-text-light">Welcome to SanBlog</h1>
-                        <p className="subtitle has-text-light font-pacifico">Quality contents just for Developers</p>
+                        <p className="subtitle has-text-light font-pacifico">Home For Quality Contents</p>
                         <div id="homeBtn">
                             {(!homeBtn) ?
                                 <a href="/login" className="btn-act button is-app-primary is-medium">Get started</a>
@@ -59,7 +59,7 @@ function Home() {
                 </div>
             </section>
             <div className='container'>
-                In SanBlog, you are free to make any post!
+                {/* In SanBlog, you are free to make any post! */}
             </div>
             <div className="container mt-5 mb-5">
                 {(status === "ready" && data) ?
